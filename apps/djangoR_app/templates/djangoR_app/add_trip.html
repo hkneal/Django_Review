@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang='en-US'>
+  <head>
+    <meta charset="utf-8">
+    <title>Add Plan</title>
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static 'djangoR_app/css/main.css' %}" media="screen" title="Add Plan"  charset="utf-8">
+  </head>
+  <body>
+    <header>
+      <h1>Add a Trip</h1>
+      <a href="{% url 'dashboard' user.id %}">Home</a>
+      <a href="/">Logout</a>
+    </header>
+    <form class="" action="{% url 'add_trip' user.id %}" method="post">
+      {% csrf_token %}
+      {{ add_trip_form }}
+      {% for field in add_trip_form %}
+        {% if field.errors %}
+          {% for error in field.errors %}
+            <p><a href="#id_{{ field.name }}">{{ error|escape }}</a></p>
+          {% endfor %}
+        {% endif %}
+      {% endfor %}
+      <input type="submit" value="Add">
+    </form>
+  </body>
+</html>

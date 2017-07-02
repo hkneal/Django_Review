@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang='en-US'>
+  <head>
+    <meta charset="utf-8">
+    <title>Destination</title>
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static '_app/css/main.css' %}" media="screen" title="Destination"  charset="utf-8">
+  </head>
+  <body>
+    <header>
+      <a href="{% url 'dashboard' user.id %}">Home</a>
+      <a href="/">Logout</a>
+    </header>
+    <div class="trip">
+      <h1>{{ trip.destination }}</h1>
+      <p>Planned By: {{ trip.user.name }}</p>
+      <p>Description: {{ trip.description }}</p>
+      <p>Travel Date From: {{ trip.travelDate_from }}</p>
+      <p>Travel Date To: {{ trip.travelDate_to }}</p>
+    </div>
+    <div class="others">
+      <h2>Other users' joining the trip:</h2>
+      {% for other in others_lst %}
+        {{ other }}
+      {% endfor %}
+    </div>
+  </body>
+</html>
